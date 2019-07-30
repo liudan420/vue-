@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{num}}
+    <!-- 事件绑定的方式 -->
+    <button v-on:click='num++'>加一</button> 
+    <!-- 直接绑定函数名称 ，会默认携带事件对象（$event）作为事件函数的第一个参数-->
+    <button @click='add'>加一</button>
+    <!-- 若事件绑定函数调用的方式, 那么事件对象$event必须作为最后一个实参显示传递，并且名称必须是$event-->
+    <button @click='add1(5,$event)'>加5</button>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        num:1
+      },
+      methods:{
+        add:function(event){
+         console.log( event.target.innerHTML) //加一
+         console.log( event.target.tagName)  //BUTTON
+          this.num++   //this指向vm实例对象
+        },
+        add1(s,event){
+          this.num+=s
+          console.log(event.target.innerHTML)
+          console.log( event.target.tagName)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

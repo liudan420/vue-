@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .active{
+    border:1px,solid,red;
+    width:200px;
+    height: 200px;
+  }
+  .current{
+    background:pink
+  }
+ 
+ /* 数组 */
+ .newActive{
+   border:2px, solid, #eee;
+   width: 300px;
+   height: 300px;
+ }
+ .Error{
+   background-color: red;
+ }
+</style>
+<body>
+  <div id="app">
+    <!-- class样式绑定1：对象语法 -->
+    <!-- 一次性动态绑定多个data中的属性值 ，active为盒子的类名，isActive为data中的变量名-->
+     <div :class="{active:isActive,current:isCurrent}" >  <!--简写形式 -->
+    <!-- <div v-bind:class="{active:isActive,current:isCurrent}" > -->
+      刘丹
+    </div>
+    <button @click='fn'> 切换</button>
+
+    <!-- class样式绑定2：数组语法 -->
+    <!-- Active和isError为data中的变量名，真正的class名需要在data中重新定义赋值 -->
+    <div :class="[Active,isError]">
+      liudan
+    </div>
+    <button @click='fn1'>切换1</button>
+    
+    <!-- style样式绑定1：对象绑定 -->
+    <!-- <div :style='{background:backGround,width:widthStyle,height:heightStyle}'> -->
+      <div :style='objStyle'>
+        LD
+      </div>
+      <button @click='fn2'>切换2</button>
+
+    <!-- style样式绑定1：数组绑定 -->
+    <!-- 若在数组中写上2个或2个以上的样式对象，则他们之间存在覆盖的问题，后一个样式会覆盖前一个样式 -->
+    <div :style='[objStyle,objStyle1]'>
+        afhajkg
+    </div>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:"#app",
+      data:{
+        isActive:true,
+        isCurrent:true,
+        Active:'newActive',
+        isError:'Error',
+        backGround:'deeppink',
+        heightStyle:'200px',
+        widthStyle:'300px',
+        objStyle:{
+          border:'2px solid blue',
+          width:'300px',
+          height:'300px',
+          background:'lightblue'
+        },
+        objStyle1:{
+          border:'2px solid #blue',
+          background:'purple',
+          width:'600px',
+          height:'600px'
+        }
+      },
+      methods:{
+        fn(){
+          this.isActive=!this.isActive
+          this.isCurrent=!this.isCurrent
+        },
+        fn1(){
+          this.Active='',
+          this.isError=''
+        },
+        fn2(){
+          this.objStyle.background='pink'
+        }
+      }
+    })
+  
+  
+  </script>
+</body>
+</html>

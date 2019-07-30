@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button-a></button-a>
+    <button-b></button-b>
+    <button-c></button-c>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var son1={
+      data:function(){
+        return {
+          num:2
+        }
+      },
+      template:`<button>按钮{{num}}</button>`
+    }
+    var son2={
+      data:function(){
+        return {
+          num:2
+        }
+      },
+      template:`<button v-on:click='fn'>按钮{{num}}</button>`,
+      methods: {
+        fn(){
+          this.num++
+        }
+      },
+    }
+    var son3={
+      data:function(){
+        return {
+          num:2
+        }
+      },
+      template:`<button>按钮{{num}}</button>`,
+    }
+
+    var vm= new Vue({
+      el:'#app',
+      data:{},
+      components:{
+        'button-a':son1,
+        'button-b':son2,
+        'button-c':son3,
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type='text' v-model='firstName'>
+    <input type='text'v-model='lastName'>
+    <input type='text'v-model='a'>
+    {{a}}
+    {{fullName}}
+    <!-- {{fullName}} -->
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        firstName:'tom',
+        lastName:'jim',
+        fullName:'',
+        a:[1,2,3]
+      },
+      //侦听器的应用场景：数据变化时执行异步或开销较大的操作
+      watch:{      //侦听器，当数据发生变化时调用侦听器内的方法
+        firstName:function(val){   //方法的名称必须和监听的数据属性名一致
+          this.fullName=val+' '+ this.lastName
+        },
+        lastName:function(val){   //val为实时的lastName值
+          this.fullName=this.firstName+' ' +val
+        },
+        a:function(){
+          console.log(1)
+        }
+      },
+      // computed:{
+      //  fullName(){
+      //    return this.firstName+" "+this.lastName
+      //  }
+      // }
+    })
+  </script>
+</body>
+</html>

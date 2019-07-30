@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for='item in list'>{{item}}</li>
+    </ul>
+    <div>{{info.name}}</div>
+    <div>{{info.sex}}</div>
+    <div>{{info.age}}</div>
+    <div>{{info}}</div>
+    <div>{{list}}</div>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        list:['lemon','moon','apple'],
+        info:{
+          name:'ld',
+          sex:'女',
+          age:18
+        }
+      }
+    })
+    // vm.list[0]='liudan'   //根据索引更改的值不是响应式的,即后台的数据可能会变，但是页面上的数值是不会改变的
+    // vm.$set(vm.list,1,'liudan')    //响应式
+    Vue.set(vm.list,2,'liudan')    //响应式
+    
+    // vm.info.genter='beautiful'    //非响应式的
+
+    vm.$set(vm.info,'gender','liudan')  //响应式
+
+
+  </script>
+</body>
+</html>

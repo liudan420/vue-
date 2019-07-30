@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      {{msg}}        <!--插值表达式 ：把数据插入到标签中-->
+    </div>
+    <!-- 引入vue库文件 -->
+    <script src="./js/vue.js"></script>
+    <script>
+      // 创建vue实例对象
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          msg:'hello world'
+        }
+      })
+    </script>
+  </body>
+</html>

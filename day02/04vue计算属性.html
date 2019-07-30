@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{msg}}</p>
+     <p>{{reverse}}</p>     <!--打印了一个computed -->
+    <p>{{reverse}}</p>   
+    <p>{{reverseMessage()}}</p>    <!--打印了两个methods -->
+    <p>{{reverseMessage()}}</p>    
+    <!--注意此处的方法需要加括号调用 ，但是计算属性不用加（）调用-->
+
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm= new Vue({
+      el:"#app",
+      data:{
+        msg:'happy'
+      },
+      methods:{
+        reverseMessage:function(){
+          console.log('methods')
+          return this.msg.split('').reverse('').join('')
+        }
+      },
+      computed: {
+        reverse:function(){
+          console.log('computed')
+          return this.msg.split('').reverse('').join('')  //注意：此处必须return 否则拿不到结果
+        }
+      }
+    })
+
+
+    //使用计算属性的目的：
+      // 表达式的计算逻辑可能会比较复杂，使用计算属性可以使模板内容更加简洁
+
+    //计算属性和方法的区别：
+    // 计算属性是基于他们的依赖进行缓存的
+    // 方法不存在缓存机制，每调用一次就重新执行一次
+    //计算属性能提高性能
+  </script>
+</body>
+</html>

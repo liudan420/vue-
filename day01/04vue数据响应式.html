@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+        {{msg}}
+    </div>
+    <!-- 只通过vue编译一次，在页面显示内容后不会再有响应式的能力，这样能提高性能，应用场景：显示的信息后续不再需要修改 -->
+    <div v-once>
+      {{msg}}
+    </div>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    // vue中的指令和插值表达式一般都是响应式的，即数据的变化会导致页面的变化,Vue会默认监听data中的数据变化，比较消耗性能，此时，v-once指令可以很好的解决这个问题
+
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'hello World',
+        
+      }
+    })
+  
+  </script>
+</body>
+</html>

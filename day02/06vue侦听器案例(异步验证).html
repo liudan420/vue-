@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    用户名:
+    <input type="text" v-model.lazy='uname'>
+    <span>{{tip}}</span>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        uname:'',
+        tip:''
+      },
+      methods: {
+        checking(uname){
+          var that = this
+          setTimeout(()=>{
+            if(that.uname=='admin'){
+              that.tip='验证已通过'
+            }else if(that.uname==''){
+              that.tip='请输入用户名'
+            }else{
+              that.tip='用户名不存在'
+            }
+          },500)
+        }
+      },
+      //使用watch侦听器监听uname的变化，当uname发生变化时，将变化后的值传给watch下的函数，为了时watch内的代码更简洁，将验证的方法放在methods中，因为验证需要发送ajax请求，是一个异步函数，于是将验证规则写在setTimout定时器中解决异步的问题，又因为setTimeout中的this指向为windows，所以在定时器外部将this赋值给that
+      watch:{
+        uname:function(val){    //val为data中改变的最新的数据的值
+         this.checking(val)
+         this.tip='正在验证...'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

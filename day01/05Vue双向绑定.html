@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{msg}}
+    <br/>
+      <!-- v-model双向数据绑定,页面表单中的数据的改变会导致后台数据的一同变化，同时，因为vue的数据响应式原理，会导致插值表达式中的内容跟着一起改变 -->
+     <input type="text" v-model='msg'>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'hello World'
+      }
+    })
+  </script>
+</body>
+</html>

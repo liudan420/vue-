@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <form action="">
+      <div>
+          用户名：
+          <!-- 按键修饰符  delete键 清空文本 -->
+        <input type="text" v-model='msg' @keyup.delete='clearContent'>
+      </div>
+      <div>
+        密码：
+        <!-- 按键修饰符  回车 打印文本-->
+        <input type="text" v-model='password' @keyup.enter.stop='fn' >
+      </div>
+      <input type='button' @click='handlesubmit' value="按钮" />
+
+    </form>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'',
+        password:''
+      },
+      methods: {
+        fn(){
+          console.log(this.msg,this.password)
+        },
+        clearContent(){
+        this.msg=''
+        },
+        handlesubmit(){
+
+        }
+      },
+
+    })
+  
+  </script>
+</body>
+</html>

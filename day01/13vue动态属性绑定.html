@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 标签中的属性若要绑定data数据，则需在属性前加v-bind: 或是:   否则不能直接写data数据中的变量名 -->
+    <a :href="url" @click='fn'>百度</a>
+    <a v-bind:href="url">百度1</a
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm= new Vue({
+      el:'#app',
+      data:{
+        url:'http://www.baidu.com'
+      },
+      methods:{
+        fn(){
+          //动态更改属性值
+          this.url='http://www.jd.com'
+        }
+      }
+    })
+  
+  </script>
+</body>
+</html>

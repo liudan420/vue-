@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"> 
+    {{msg}}
+    <br/>
+    <input type="text" @keyup='fn' v-model='msg'>
+    <!-- 自定义按键修饰符 -->
+    <input type="text" @keyup.a='fn' v-model='msg'>
+    <!-- a按键的keycode值为65，以下写法等同于上面的写法 -->
+    <input type="text" @keyup.65='fn' v-model='msg'>
+
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    // 在全局下通过.config.keycodes对象自定义一个按键修饰符
+    Vue.config.keyCodes.a=65
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:''
+      },
+      methods:{
+        fn(event){
+          // 注意：后面event事件对象下的按键值的属性名称为keyCode没有s
+          console.log(event.keyCode)  
+        }
+      }
+    })
+  </script>
+</body>
+</html>

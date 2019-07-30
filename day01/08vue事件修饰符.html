@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+[v-cloak]{
+  display: none;
+}
+</style>
+<body>
+  <div id="app" v-cloak>
+    {{num}}
+    <div @click='fn1'>
+      <!-- .stop  vue提供的阻止冒泡的方法 -->
+      <button @click.stop='fn'>冒泡</button>
+  </div>
+    <div>
+      <!--.prevent vue提供的阻止默认行为的方法 -->
+
+      <a href="http://www.baidu.com" @click.prevent='fn3'>百度</a>
+    </div>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        num:1
+      },
+      methods: {
+        fn1(){
+          this.num++
+        },
+        fn(event){
+          // js原生的阻止冒泡的写法
+          // event.stopPropagation();  //阻止冒泡
+          
+          
+        },
+        fn3(event){
+          // event.preventDefault();  //阻止默认行为（）跳转  js原生的阻止默认行为的写法
+          
+        }
+      },
+    })
+  </script>
+</body>
+</html>

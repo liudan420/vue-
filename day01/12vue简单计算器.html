@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>简单计算器</h1>
+    请输入a:
+    <input type="text" v-model.number='a'>
+    <br>
+    请输入b：
+    <input type="text" v-model.number='b' @keyup.a='fn'>
+    <br>
+    <button @click='fn'>提交</button>
+    <p>结果是：{{result}}</p>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    // 自定义按键修饰符
+    Vue.config.keyCodes.a=13
+    var vm=new Vue({
+      el:'#app',
+      data:{
+        a:'',
+        b:'',
+        result:''
+      },
+      methods:{
+        fn(){
+          this.result=this.a+this.b
+        }
+      }
+    })
+  
+  </script>
+</body>
+</html>

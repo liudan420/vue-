@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* 提供样式，原理是先通过样式隐藏内容，然后在内存中进行值的替换，替换好之后再显示最终的结果，这样就能解决闪动的问题 */
+  [v-cloak]{
+    display: none
+  }
+</style>
+<body>
+  <div id="app">
+    <div v-cloak>
+        {{msg}}    <!--插值表达式有闪动的问题 -->
+    </div>
+    
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'hello World'
+      }
+    })
+  </script>
+</body>
+</html>

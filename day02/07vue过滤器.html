@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model='uname'>
+    {{uname | upper}}
+    {{uname | lower}}
+    <input :value='uname | upper |lower'>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    //过滤器的作用(Vue) :
+    //格式化数据，比如将字符串格式化为首字母大写，将日期格式化为指定的格式等
+    //全局过滤器
+    Vue.filter('upper',function(val){
+      return val.charAt(0).toUpperCase()+val.slice(1)
+    })
+    var vm =new Vue({
+      el:"#app",
+      data:{
+        uname:''
+      },
+      //局部过滤器的写法
+      filters:{
+        lower:function(val){
+          return val.charAt(0).toLowerCase()+val.slice(1)
+        }
+      }
+    })
+    
+  </script>
+</body>
+</html>

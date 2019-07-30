@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./js/vue.js"></script>
+  <script>
+
+    //以下方法中都不改变原数组，除了forEach（）方法，若forEach方法的函数中写了改变原数组的代码则有可能改变原数组
+
+
+
+    var list=[1,4,57,87,454]
+    //Array.map(function(){})    返回一个新的数组，数组中的每个元素为经过function函数处理过的结果
+    // map()方法的demo：
+    var newlist=list.map(function(num){
+      return num*10
+    })
+    console.log(newlist)    //[10,40,570,870,4540]
+
+    //Array.filter(function(item,index,Array){})方法   item为Array数组中的每一项 返回一个符合function函数条件的新的数组 
+    // Array.filter() demo
+    var newlist1 = list.filter(function(item){
+      return item>=20
+    })
+    console.log(newlist1)   //[57,87,454]
+
+    //Array.some(function(){})   返回一个boolean值，判断是否有元素符合function的条件（） 如果该函数对任一项返回true，则返回true。
+    var listboolean=list.some(function(num){
+      return num >100
+    })
+    console.log(listboolean)   //true   只要有一项满足function函数中的值就返回结果true 并停止判断
+
+    //Array.every(function(item,index,arr){})  是对数组中每一项运行给定函数，如果该函数中每一项都返回true,则返回true 若有一项返回false 则停止向下执行
+    list.every( function( item, index, array ){ 
+    console.log( 'item=' + item + ',index='+index+',array='+array ); //item=1,index=0,array=1,4,57,87,454
+    return item > 3; 
+})
+
+    //Array.forEach(function(){}) 没有返回值  只是针对每个元素调用function函数
+    list.forEach(function(el){
+      console.log(el)    
+    })
+    //结果为1,4,57,87,454
+
+
+    // ES6中findIndex() 和  find()的用法
+    // Array.find((value,index,arr)=>{
+    //   return value >10
+    // }) 
+    // value:为被查找的数组中的数组元素
+    // index：被查找的数组中的数组元素的索引
+    // arr:被查找的数组名称
+    // 查找元素，返回找到的值，找不到返回undefined。
+    // find(()=>{}) 方法的Demo:
+     var list5= list.find((value,index,list)=>{
+        return value > 100
+      })
+      console.log(list5)  //454
+
+
+    //  Array.findIndex((value,index,arr)=>{})查找元素，返回找到的index，找不到返回-1
+    var items=list.findIndex((value,index,list)=>{
+      return value > 50
+    })
+    console.log(items)  //2   数组中符合条件的第一个元素的index值 
+
+
+
+    对象合并
+    var obj1={
+      name:'liudan',
+      age:8
+    }
+    var obj2={
+      name:'zhengwei',
+      gender:'nan'
+
+    }
+    var newObj={...obj1,...obj2}
+    //注意：此处的Obj放在后面的权重更高，若两个obj有相同的属性，则后面的obj的属性的值会替代前面的属性的值
+
+
+    // ...list  将数组转换为字符串
+  </script>
+</body>
+</html>

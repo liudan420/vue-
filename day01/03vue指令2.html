@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+     <!--纯文本格式的插入数据，不会有闪动的问题 -->
+     <div v-text='msg'> 
+     </div>
+    
+      <!-- 带样式的文本数据插入，但是会有安全隐患（xss跨站脚本攻击） -->
+      <div v-html='msg1'></div>
+      </div>
+      
+      <!-- 原始数据显示 -->
+      <div v-pre>     
+        {{msg}}
+      </div>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'hello World',
+        msg1:'<h1>hello World</h1>'
+      }
+    })
+  </script>
+</body>
+</html>

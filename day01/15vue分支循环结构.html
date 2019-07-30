@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+    <!-- vue分支结构：v-if   v-show -->
+
+    <!-- v-if控制的是标签元素是否渲染到页面上，最终结果是只有一个div标签会渲染到文档结构中 -->
+    <div v-if='score > 90'>优秀</div>
+    <div v-else-if='score < 90&&score > 80'>良好</div>
+    <div v-else-if='score > 60&&score < 80'>及格</div>
+    <div v-else='score < 60'>较差</div>
+    
+    <!-- v-show控制的是标签元素是否显示到页面中（可能已经渲染了），运作原理是通过给标签加上display:none的样式，性能较高，若需要频繁的使标签出现隐藏，建议使用v-show -->
+    <div v-show='flag'>出现</div>
+    <button @click='handleChange'>切换</button>
+
+    <!-- vue循环结构  v-for -->
+    <!-- v-for循环遍历数组1：数组中为元素 -->
+    <div>
+      <ul>
+        <li :key='index' v-for='(item,index) in friuts'>{{item+'----'+index}}</li>
+      </ul>
+    </div>
+    <!-- v-for循环遍历数组2：数组中为复杂对象 -->
+    <div>
+        <ul>
+          <!-- :key能提高性能，帮助vue区分不同的元素，从而提高性能 -->
+          <li :key='item.id' v-for='item in myFriuts'>{{item.Ename+'------'+item.Cname+'-----'+item.id}}</li>
+        </ul>
+      </div>
+    
+    <!-- v-for遍历循环对象 -->
+    <div>
+      <ul>
+        <!-- 注意，用v-for循环遍历对象的时候 value：属性值  key:对象中的属性名  index:索引值 -->
+        <!-- <li v-for='(value,key,index) in obj1'>{{value+'----'+key+"---"+index}}</li> -->
+        <!-- v-if和v-for可以配合起来一起用  有筛选的作用-->
+        <li v-if='value==13' v-for='(value,key,index) in obj1'>{{key+'--'+value+'--'+index}}</li>
+      </ul>
+    </div>
+
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    // 原生js循环遍历对象
+    var obj={
+      name:'liudan',
+      age:13,
+      sex:'女'
+    }
+    for(key in obj){
+      console.log(key,obj[key])
+    }
+
+   var vm = new Vue({
+     el:'#app',
+     data:{
+       score:80,
+       flag:true, 
+       friuts:['西瓜','香蕉','香瓜','榴莲'],
+       myFriuts:[
+         {id:'1',Ename:'apple',Cname:'苹果'},
+         {id:'2',Ename:'watermalen',Cname:'西瓜'},
+         {id:'3',Ename:'pear',Cname:'梨'}
+       ],
+       obj1:{
+        name:'liudan',
+        age:13,
+        sex:'女'
+       }
+     },
+     methods:{
+      handleChange(){
+        this.flag=!this.flag
+      }
+     }
+   }) 
+  </script>
+</body>
+</html>

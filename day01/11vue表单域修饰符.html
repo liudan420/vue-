@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+[v-cloak]{
+  display: none;
+}
+</style>
+<body>
+  <div id="app" v-cloak>
+    {{msg}}
+    <br />
+    <!-- 在表单中输入任何一个字母都会默认触发input事件，change事件为失去焦点时触发 两者的转换通过表单域修饰符.lazy更改-->
+    <input type="text" v-model='msg'>
+    <input type="text" v-model.lazy='msg'>
+
+    <!-- 表单域修饰符number的作用为将表单域中输入的字符串转换为数字类型 -->
+    <input type="text" v-model.number='num'>
+    <button @click='fn(12)'>相加</button>
+
+    <!-- 表单域修饰符.trim 作用为除去表单域输入内容两头的空格 -->
+    <input type="text" v-model.trim='num1'>
+    <button @click='fn1'>去除空格</button>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'',
+        num:'',
+        num1:''
+      },
+      methods:{
+        fn(s){
+          this.num+=s
+          console.log(this.num)
+        },
+        fn1(){
+          console.log(this.num1.length)
+        }
+      }
+    
+    })
+  </script>
+</body>
+</html>

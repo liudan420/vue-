@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div :value='msg'>{{msg}}</div>
+    <button @click='modify'>修改</button>
+    <button @click='destroy'>销毁</button>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'生命周期'
+      },
+      methods:{
+        modify(){
+          this.msg='你好'
+        },
+        destroy(){
+          this.$destroy()
+        }
+      },
+      beforeCreate() {
+        console.log('beforeCreate')
+      },
+      created() {
+        console.log('created')
+      },
+      beforeMount() {
+        console.log('beforeMount')        
+      },
+      mounted() {
+        console.log('mounted')                
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate')                        
+      },
+      updated() {
+        console.log('updated')                                
+      },
+      beforeDestroy() {
+        console.log('beforeDestroy')                                        
+      },
+      destroyed() {
+        console.log('destroyed')                                                
+      },
+
+    })
+
+    // vue实例的生命周期：
+    // ①挂载阶段：(对属性的初始化操作，如watch  methods属性等)
+    //   ①beforeCreate   创建Vue实例后就创建
+    //   ②create         完成事件挂载之后
+    //   ③beforeMount    模板渲染之前
+    //   ④mounted         模板渲染之后   一般调用后台接口，填充数据都是在mounted钩子函数内进行
+    // ②更新阶段（Dom元素或组件的更新）    
+    //   ①beforeUpdate      data中的数据更新之前
+    //   ②updated           data中的数据更新之后
+    // ③销毁阶段（销毁相关属性）    
+    //   ①beforeDestroy     在vue实例销毁之前 ，包括方法，data中的数据等   销毁vue实例需要用到$destroy这个方法
+    //   ②destroyed         Vue实例被销毁之后
+    
+  </script>
+</body>
+</html>
