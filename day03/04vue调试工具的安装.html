@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+      <level1></level1>  
+      <level2></level2>  
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    //第一步：vue官网上下载vue调试工具：devtools 在官网首页的生态系统目录下，按照安装步骤安装devtools
+    // ①克隆仓库
+    // ②安装依赖包
+    // ③构建
+    // ④打开Chrome（谷歌）扩展页面
+    // ⑥加载已解压的扩展，选择shells/chrome
+
+    var level3={
+      data:function(){
+        return {
+          numm:'孙子'
+        }
+      },
+      template:`
+        <div>
+          {{numm}}
+        </div>
+      `
+    } 
+
+
+    var level1={
+      data:function(){
+        return {
+          num:'儿子'
+        }
+      },
+      components:{
+        'level3':level3
+      },
+      template:`
+      <div>
+        {{num}}
+        <level3></level3>
+        <level3></level3>
+      </div>
+      `
+    }
+    var level2={
+      data:function(){
+        return {
+          num:'儿子'
+        }
+      },
+
+      template:`
+      <div>
+        {{num}}
+        
+      </div>
+      `
+    }
+
+
+
+    var vm=new Vue({
+      el:'#app',
+      data:{
+
+      },
+      components:{
+        'level1':level1,
+        'level2':level2
+      }
+    })
+  </script>
+</body>
+</html>
+
+
