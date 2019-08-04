@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .current{
+    color: coral;
+    font-size: 17px
+  }
+</style>
+<body>
+  <div id="app">
+    <my-son :list='list'>
+      <template v-slot:default='scope'>
+        <strong v-if='scope.info.id==1' class="current">{{scope.info.name}}</strong>
+        <span v-else>{{scope.info.name}}</span>
+      </template>
+    </my-son>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    Vue.component('my-son',{
+      props:['list'],
+      template:`
+        <div>
+          <ul>
+            <li v-for='item in list' :key='item.id'>
+              <slot :info='list'>
+                {{item.name}}
+              </slot>
+            </li>
+          </ul>
+        </div>
+      `
+    })
+    var vm = new Vue({
+      el:"#app",
+      data:{
+        list:[
+          {
+            id:1,
+            name:'orange'
+          },
+          {
+            id:2,
+            name:'apple'
+          },
+          {
+            id:3,
+            name:'pear'
+          }
+        ]
+      }
+
+      
+    })
+
+
+    //作用域插槽的应用场景：
+    //父组件可以得到子组件中的数据内容，并对子组件中的内容进行加工处理
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 父组件向子组件中传递内容 -->
+    <my-son >
+      <p slot='footer'>我是尾部646</p>
+      <p slot='main'>我是主体212121</p>
+      <p slot="header">我是头部21</p>
+      <p slot="main"> 我是主体2</p> 
+      <p > 11111</p>           <!--   一闪而过，不会在页面显示 -->
+    </my-son>
+    <br>
+    <my-son>
+      <!-- template属于vue的API，使用template可以在同一插槽内添加多个标签和内容  作用是零时性的包裹下内容和信息，这个标签不会渲染到页面上-->
+      <template slot="main">
+        <p>我是谁</p>
+        <p>我是靠靠哥</p>
+        <p slot='aaa'></p>    <!-- 当没有匹配的具名插槽时就会匹配匿名插槽 -->
+      </template>   
+    </my-son>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    //具名插槽的使用，及template的作用
+    Vue.component('my-son',{
+      template:`
+        <div>
+          <header>
+            <slot name='header'>二个人</slot>
+          </header>
+          <main>
+            <slot name='main'>三个人</slot>
+          </main>
+          <footer>
+            <slot name='footer'>四个人</slot>
+          </footer>
+          <slot>我是默认插槽</slot>
+        </div>
+      `
+    })
+
+    
+    var vm = new Vue({
+      el:'#app',
+      
+    })
+  </script>
+</body>
+</html>

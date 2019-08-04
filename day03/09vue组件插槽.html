@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+     <my-son>有bug发生</my-son>  <!--将父组件中的内容传递给子组件并显示 -->
+   <my-son></my-son>          <!--  当父组件没有传内容给子组件的时候，会显示子组件中slot插槽中的内容 -->
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    
+  //组件插槽的作用：将父组件模板中的内容部分传递给子组件
+
+  Vue.component('my-son',{   
+    template:`
+      <div>
+        <strong>ERROR:</strong>
+        <slot>默认内容</slot>
+      </div>
+    `
+  })
+
+  var vm = new Vue({
+    el:'#app',
+    data:{
+    },
+
+  })
+  </script>
+</body>
+</html>

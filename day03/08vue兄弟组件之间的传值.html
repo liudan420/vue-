@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+      父组件<br>
+    <button @click='fn'>销毁事件</button>
+    
+    
+    <test-tom></test-tom>
+    <test-jerry></test-jerry>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    //创建一个事件中心，用于管理组件之间的通信
+    // var eventHub = new Vue()  
+
+    // //$on(自定义事件的名称，事件函数)      事件监听
+    // eventHub.$on('add-todo',)
+
+    // //$emit(要触发的事件名称,携带参数)               触发事件
+    // eventHub.$emit('add-todo',id)    
+
+    // eventHub.$off('add-todo')   //销毁事件
+
+     
+
+    //创建事件中心
+    var hub =new Vue()
+    
+    Vue.component('test-tom',{
+      data:function(){
+        return {
+          num:0
+        }
+      },
+      template:`
+        <div>
+          {{num}}
+          <p>我是Tom</p>
+          <button @click='fn'>给jerry加3</button>
+        </div>
+      
+      `,
+      methods:{
+        fn(){
+          //事件触发   触发的事件是兄弟组件的事件
+          hub.$emit('jerry-event',3)
+        }
+      },
+      mounted() {
+        //监听事件$on(事件名称，（由兄弟组件传过来的参数）=>{执行的事件})
+        hub.$on('tom-event',(val)=>{
+          this.num+=val
+        })
+      }
+    })
+
+    Vue.component('test-jerry',{
+      data:function(){
+        return {
+          num:0
+        }
+      },
+      template:`
+        <div>
+          {{num}}
+          <p>我是jerry</p>
+          <button @click='fn'>给Tom加2</button>
+        </div>
+      
+      `,
+      methods:{
+        fn(){
+         //事件触发   触发的事件是兄弟组件的事件
+         hub.$emit('tom-event',2)
+        }
+      },
+      mounted() {
+        //监听事件$on(事件名称，（由兄弟组件传过来的参数）=>{执行的事件})
+        hub.$on('jerry-event',(val)=>{
+          this.num+=val
+        })
+      }
+    })
+
+    var vm =new Vue({
+      el:'#app',
+      data:{
+
+      },
+      methods:{
+        fn(){
+          //销毁事件
+          hub.$off('tom-event')
+          hub.$off('jerry-event')
+        }
+      }
+      
+    })
+  </script>
+</body>
+</html>

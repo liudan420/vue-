@@ -8,22 +8,33 @@
 </head>
 <body>
   <div id="app">
-
+      <my-son @myclick='fn'> 111111</my-son>
   </div>
   <script src="./js/vue.js"></script>
   <script>
     var vm = new  Vue({
       el:'#app',
       data:{
-        
+
+      },
+      methods:{
+        fn(a){
+          console.log(a)
+        }
       },
       components:{
         'my-son':{
+          data:function(){
+            return {
+
+            }   
+          },
           template:`
             <div>
-              
+              <button @click="$emit('myclick',100)">子向父传值</button>        
             </div>
           `,
+          //调用父组件的myclick事件并通过参数传值给父组件
         }
       }
     })
