@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./js/vue.js"></script>
+  <script src="./js/axios.min.js"></script>
+  <script>
+    
+    axios.defaults.timeout=3000    //超时时间
+    axios.defaults.baseURL='http://localhost:3000/'   //默认地址
+    
+
+    //设置请求拦截器
+    axios.interceptors.request.use(function(config){
+      console.log(config)   //返回一个对象，包含请求的信息4
+      console.log(config.url)  //ioo
+      console.log(config.baseURL)  //http://localhost:3000/
+       config.headers.mytoken='ni hao'    //在请求发送到服务器之前，在请求头中添加一个mytoken信息
+       console.log(config)
+      return config
+    }), function(err){
+      console.log(err)
+    }
+    //发送请求
+    axios.get('ioo',{
+      params:{
+        uname:'zhutou',
+        age:18
+      }
+    }).then(ret=>{
+      console.log(ret.data)
+    })
+
+
+
+    //设置响应拦截器
+    axios.interceptors.response.use(function(res){
+      var data = res.data
+      return data
+    }),function(err){
+      console.log(err)
+    }
+    axios.get('sooo?uname=lisi&age=30').then(data=>{
+      console.log(data)
+    })
+  </script>
+</body>
+</html>

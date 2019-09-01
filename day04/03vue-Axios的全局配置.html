@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./js/vue.js"></script>
+  <script src="./js/axios.min.js"></script>
+  <script>
+    // axios.get('http://localhost:3000/adata').then(ret=>{
+    //   //data属性名称是固定的，用于获取后台响应的数据
+    //   console.log(ret.data)
+    // })
+
+    //axios官网（http://github.com/axios/axios）是一个基于Promise，用于浏览器和node.js的HTTP客户端
+    //支持浏览器和node.js
+    //支持promise
+    //能拦截请求和响应
+    //自动转换JSON数据
+    //是一个用于调用后台接口的js库
+
+      axios.defaults.timeout=3000    //超时时间
+      axios.defaults.baseURL='http://localhost:3000/'   //默认地址
+      axios.defaults.headers['mytoken']='ajhfjkagfj'    //设置请求头
+
+    // get传参一：通过URL传递参数
+    // axios.get('axios?id=123').then(ret=>{
+    //   console.log(ret)  //返回的是一个被axios封装的一个对象
+    //   console.log(ret.data)  //能获取到后台返回给我们的数据
+    // })
+
+    // // get传参二：通过restful形式URL传递参数
+    // axios.get('asixos/123').then(ret=>{
+    //   console.log(ret.data)
+    // })
+
+    //  // get传参三：通过params选项传递参数
+    // axios.get('asxi',{
+    //   params:{
+    //     id:123
+    //   }
+    // }).then(ret=>{
+    //   console.log(ret.data)
+    // })
+    
+    // //delete传参一：url传统方式传参
+    // axios.delete('asixos?id=123').then(ret=>{
+    //   console.log(ret.data)
+    // })
+    
+    //delete传参二：restful传参
+    // axios.delete('asxi/123').then(ret=>{
+    //   console.log(ret.data)
+    // })
+    
+    //delete传参三：params传参
+    // axios.delete('asoo',{
+    //   params:{
+    //     id:123
+    //   }
+    // }).then(ret=>{
+    //   console.log(ret.data)
+    // })
+
+  // //post请求传参：默认数据格式为JSON  json格式的数据
+  axios.post('assso',
+  {
+    age:18
+  }).then(ret=>{
+    console.log(ret.data)
+  })
+
+  //post表单格式的数据传递
+  var params = new URLSearchParams()
+  params.append('uname','lisi')
+  params.append('pwd','123456')
+  axios.post('axo',params).then(ret=>{
+    console.log(ret.data)
+  })
+
+  //put:json格式数据传递
+  axios.put('put/123',{
+    uname:'put',
+    pwd:33333
+  }).then(ret=>{
+    console.log(ret.data)
+  })
+
+  //put:表单格式数据传递 得到的数据是字符串形式的
+  var params = new URLSearchParams()
+  params.append('uname','kaokaoge')
+  params.append('pwd','4444444444')
+  axios.put('puts',params).then(ret=>{
+    console.log(ret.data)
+  })
+
+
+  //json数据格式
+  axios.get('/aoo-json').then(ret=>{
+    console.log(ret.data.uname)
+    console.log(ret.data.age)
+    })
+ 
+
+  </script>
+</body>
+</html>

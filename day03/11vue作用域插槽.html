@@ -15,7 +15,7 @@
 <body>
   <div id="app">
     <my-son :list='list'>
-      <template v-slot:default='scope'>
+      <template ='scope'>
         <strong v-if='scope.info.id==1' class="current">{{scope.info.name}}</strong>
         <span v-else>{{scope.info.name}}</span>
       </template>

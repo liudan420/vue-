@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./vue.js"></script>
+  <script>
+    //基本特性：
+    //更加简单的数据获取方式，功能更加强大，灵活，可以看成是xhr（AJAX）的升级版
+    //基于Promise实现
+
+    //语法结构
+    // fetch(url).then(data=>{
+    //    return data.text()  返回的是一个promise对象，可以通过下一个.then()获得数据
+   // }      
+    // ).then(  //          注意：这里得到的才是最终的数据
+    // )  
+    //           .then(fn3)
+    //           ...
+    //           .catch(fn)  这里是执行错误时返回的信息
+
+
+    
+    fetch('http://localhost:3000/fdata').then(function(data){
+      return data.text()   // 固定写法，fetch是js原生的方法，比ajax好用
+    }).then(function(data){
+      console.log(data)
+    })
+
+  
+  </script>
+  <script>
+    
+  </script>
+</body>
+</html>

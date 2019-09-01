@@ -29,7 +29,7 @@
     })
     console.log(newlist1)   //[57,87,454]
 
-    //Array.some(function(){})   返回一个boolean值，判断是否有元素符合function的条件（） 如果该函数对任一项返回true，则返回true。
+    //Array.some(function(){})   循环遍历数组 ，返回一个boolean值，判断是否有元素符合function的条件（） 如果该函数对任一项返回true，则返回true。
     var listboolean=list.some(function(num){
       return num >100
     })
@@ -37,11 +37,12 @@
 
     //Array.every(function(item,index,arr){})  是对数组中每一项运行给定函数，如果该函数中每一项都返回true,则返回true 若有一项返回false 则停止向下执行
     list.every( function( item, index, array ){ 
-    console.log( 'item=' + item + ',index='+index+',array='+array ); //item=1,index=0,array=1,4,57,87,454
-    return item > 3; 
-})
+    console.log( 'item=' + item + ',index='+index+',array='+array ) 
+      item=1,index=0,array=1,4,57,87,454 
+      return item > 3; 
+    })
 
-    //Array.forEach(function(){}) 没有返回值  只是针对每个元素调用function函数,el为数组中的每一项
+    // Array.forEach(function(){}) 没有返回值  只是针对每个元素调用function函数,el为数组中的每一项 -->
     list.forEach(function(el){
       console.log(el)    
     })
@@ -62,16 +63,16 @@
       })
       console.log(list5)  //454
 
-
+    //findIndex((要查找的元素，要查找的元素的索引值，要查找元素的数组)=>{})
     //  Array.findIndex((value,index,arr)=>{})查找元素，返回找到的index，找不到返回-1
     var items=list.findIndex((value,index,list)=>{
       return value > 50
     })
     console.log(items)  //2   数组中符合条件的第一个元素的index值 
+    //注意：findIndex不会对空数组进行操作，也不会改变原数组
 
 
-
-    对象合并
+     //对象合并  
     var obj1={
       name:'liudan',
       age:8
@@ -79,13 +80,18 @@
     var obj2={
       name:'zhengwei',
       gender:'nan'
-
     }
     var newObj={...obj1,...obj2}
     //注意：此处的Obj放在后面的权重更高，若两个obj有相同的属性，则后面的obj的属性的值会替代前面的属性的值
 
 
     // ...list  将数组转换为字符串
+
+
+    //Array.splice(需要删除的元素的索引,从该索引处要删除元素个数,要向数组中添加的新的元素（插入在第一个参数索引的元素的后面，所有第三个参数及之后的元素是一起插入的）)    方法向/从数组中添加/删除项目，然后返回被删除的元素数组
+    var list6=list.splice(2,1,'kaokaoge','xiha','liudan')
+    console.log(list6)    //[57]
+    console.log(list)     //[1, 4, "kaokaoge", "xiha", "liudan", 87, 454]
   </script>
 </body>
 </html>

@@ -109,60 +109,26 @@
 
     //创建购物车子组件  --中间列表
     var CarList={
+      props:['list'],
       template:`
         <div>
-          <div class="item">
-            <img src="img/a.jpg"/>
-            <div class="name"></div>
+          <div v-for='item in list' :key='item.id' class="item">
+            <img :src="item.img"/>
+            <div class="name">{{item.name}}</div>
             <div class="change">
               <a href="">－</a>
               <input type="text" class="num" />
               <a href="">＋</a>
             </div>
-            <div class="del">×</div>
-          </div>
-          <div class="item">
-            <img src="img/b.jpg"/>
-            <div class="name"></div>
-            <div class="change">
-              <a href="">－</a>
-              <input type="text" class="num" />
-              <a href="">＋</a>
-            </div>
-            <div class="del">×</div>
-          </div>
-          <div class="item">
-            <img src="img/c.jpg"/>
-            <div class="name"></div>
-            <div class="change">
-              <a href="">－</a>
-              <input type="text" class="num" />
-              <a href="">＋</a>
-            </div>
-            <div class="del">×</div>
-          </div>
-          <div class="item">
-            <img src="img/d.jpg"/>
-            <div class="name"></div>
-            <div class="change">
-              <a href="">－</a>
-              <input type="text" class="num" />
-              <a href="">＋</a>
-            </div>
-            <div class="del">×</div>
-          </div>
-          <div class="item">
-            <img src="img/e.jpg"/>
-            <div class="name"></div>
-            <div class="change">
-              <a href="">－</a>
-              <input type="text" class="num" />
-              <a href="">＋</a>
-            </div>
-            <div class="del">×</div>
-          </div>
+            <div class="del" @click='fn(item.id)'>×</div>
+          </div> 
         </div>
-      `
+      `,
+      methods:{
+        fn(id){
+          this.$emit('myclick',id)
+        }
+      }
     }
     //创建购物车子组件  --尾部计算
     var CarTotal={
@@ -226,7 +192,7 @@
       template:`
         <div class='cart'>
           <car-title :name='name'></car-title>
-          <car-list></car-list>
+          <car-list :list='list' @myclick='del($event)'></car-list>
           <car-total :list='list'></car-total>
         </div>
       `,
@@ -235,8 +201,18 @@
         'car-list':CarList,
         'car-total':CarTotal
       },
+      methods:{
+        del(id){
+          //根据id删除list中的数据
+          //根据id所对应的数据的索引
+          var index= this.list.findIndex(val=>{
+            return val.id==id
+          })
+          //根据索引删除对应数据
+          this.list.splice(index,1)
+        }
+      }
     })
-
 
 
     //创建父组件
